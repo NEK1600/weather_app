@@ -9,7 +9,7 @@ environment:
   sdk: '>=3.1.0 <4.0.0'
 
 dependencies:
-  firebase_core: ^2.15.1
+  firebase_core: ^2.24.2
   firebase_auth: ^4.15.2
   flutter:
     sdk: flutter
@@ -24,8 +24,20 @@ dev_dependencies:
 
 
 flutter:
-  #assets:
-    #- assets/order_bg.png
+  assets:
+    - assets/cloudy_min.png
+    - assets/precipitation_up.png
+    - assets/rain_min.png
+    - assets/rain_up.png
+    - assets/rainfall_up.png
+    - assets/snow_min.png
+    - assets/snow_up.png
+    - assets/sun_min.png
+    - assets/sun_up.png
+    - assets/thunderstorm_min.png
+    - assets/thunderstorm_up.png
+    - assets/splash.png
+    - assets/home_screen.png
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
