@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:weather_app/presentation/page/weather_page.dart';
 
 class InitialApp extends StatelessWidget {
   const InitialApp({super.key});
@@ -11,9 +10,6 @@ class InitialApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
-      ),
-      home: Scaffold(
-        body: WeatherPage(),
       ),
     );
   }
