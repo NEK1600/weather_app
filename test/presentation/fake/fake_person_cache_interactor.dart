@@ -4,6 +4,7 @@ import 'fake_auth_person.dart';
 
 class FakePersonCacheInteractor implements PersonCacheInteractor {
   int callCache = 0;
+  int callSaveCache = 0;
   bool personFound = true;
   @override
   Result<AuthPerson, CustomFailure> cache() {
@@ -13,5 +14,10 @@ class FakePersonCacheInteractor implements PersonCacheInteractor {
     } else {
       return Failure(CachePersonFailure(message: "fake message"));
     }
+  }
+
+  @override
+  Future saveCache() async {
+    callSaveCache++;
   }
 }

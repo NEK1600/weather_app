@@ -4,7 +4,7 @@ import '../fake/fake_navigation.dart';
 import '../fake/fake_person_cache_interactor.dart';
 
 void main() {
-  group('call necessary fun', () {
+  group("call necessary fun", () {
     late InitialCubit initialCubit;
     late FakePersonCacheInteractor personCache;
     late FakeNavigation navigation;
