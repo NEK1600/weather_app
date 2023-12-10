@@ -6,7 +6,7 @@ import '../fake/fake_person_cache_interactor.dart';
 
 void main() {
   group("call necessary fun", () {
-    late LoginCubit loginCubit;
+    late LoginPageCubit loginCubit;
     late FakeNavigation navigate;
     late FakeAuthPersonInteractor authPersonInteractor;
     late FakePersonCacheInteractor personCacheInteractor;
@@ -14,7 +14,7 @@ void main() {
       authPersonInteractor = FakeAuthPersonInteractor();
       navigate = FakeNavigation();
       personCacheInteractor = FakePersonCacheInteractor();
-      loginCubit = LoginCubit(
+      loginCubit = LoginPageCubit(
         navigate: navigate,
         authPersonInteractor: authPersonInteractor,
         personCacheInteractor: personCacheInteractor,
