@@ -1,4 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:weather_app/domain/interactor/weather_interactor.dart';
+import 'package:weather_app/domain/location.dart';
 
 import '../../presentation/fake/fake_weather.dart';
 import '../fake/fake_cache_weather_repository.dart';
@@ -19,14 +21,14 @@ void main() {
     });
 
     test('responseWeather(). save cache', () async {
-      await weatherInteractor.responseWeather();
+      await weatherInteractor.responseWeather(LocationBase(lat: 0, long: 0));
       expect(weatherRepository.callResponseWeather, 1);
       expect(cacheWeather.callSave, 1);
     });
 
     test('responseWeather(). connectError -> call cache', () async {
       weatherRepository.throwConnectError = true;
-      await weatherInteractor.responseWeather();
+      await weatherInteractor.responseWeather(LocationBase(lat: 0, long: 0));
       expect(cacheWeather.callCache, 1);
     });
 

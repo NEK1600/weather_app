@@ -1,5 +1,5 @@
-class Location {
+class LocationBase {
   final double lat;
   final double long;
-  Location({required this.lat, required this.long});
+  LocationBase({required this.lat, required this.long});
 }

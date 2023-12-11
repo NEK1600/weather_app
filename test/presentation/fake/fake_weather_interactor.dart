@@ -1,4 +1,6 @@
+import 'package:weather_app/domain/interactor/weather_interactor.dart';
 import 'package:weather_app/domain/location.dart';
+import 'package:weather_app/domain/weather.dart';
 
 import 'fake_weather.dart';
 
@@ -11,7 +13,7 @@ class FakeWeatherInteractor implements WeatherInteractor {
   int callHumidity = 0;
   int callWind = 0;
   @override
-  Future<Weather> responseWeather(Location location) async {
+  Future<Weather> responseWeather(LocationBase location) async {
     callResponseWeather++;
     return FakeWeather().weather();
   }
