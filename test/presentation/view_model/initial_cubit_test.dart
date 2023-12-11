@@ -1,4 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:weather_app/presentation/view_model/initial_cubit.dart';
 
 import '../fake/fake_navigation.dart';
 import '../fake/fake_person_cache_interactor.dart';
@@ -12,7 +13,7 @@ void main() {
       personCache = FakePersonCacheInteractor();
       navigation = FakeNavigation();
       initialCubit = InitialCubit(
-        personCacheInteractor: personCache,
+        personCache: personCache,
         navigation: navigation,
       );
     });
