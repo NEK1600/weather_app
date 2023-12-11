@@ -107,7 +107,7 @@ class DataStateCity {
 
 class DataStateBase {
   final String baseIcon;
-  final int baseTemp;
+  final String baseTemp;
   final String baseWeather;
   DataStateBase({
     required this.baseIcon,
@@ -120,7 +120,7 @@ class DataStateHour {
   final String date;
   final List<String> icons;
   final List<String> times;
-  final List<int> temps;
+  final List<String> temps;
   DataStateHour({
     required this.date,
     required this.icons,
@@ -130,9 +130,9 @@ class DataStateHour {
 }
 
 class DataStateBottom {
-  final int wind;
+  final String wind;
   final String windCharacter;
-  final int humidity;
+  final String humidity;
   final String humidityCharacter;
   DataStateBottom({
     required this.wind,

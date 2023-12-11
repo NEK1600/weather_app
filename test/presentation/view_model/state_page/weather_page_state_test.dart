@@ -31,7 +31,7 @@ void main() {
     test("emitBase state", () {
       final emit = weatherPageState.emitBase(DataStateBase(
           baseIcon: "baseIcon",
-          baseTemp: 20,
+          baseTemp: "20",
           baseWeather: "baseWeather"));
       expect(stateBase.putEmit, isA<DataStateBase>());
     });
@@ -47,9 +47,9 @@ void main() {
 
     test("emitBottom state", () {
       final emit = weatherPageState.emitBottom(DataStateBottom(
-        humidity: 90,
+        humidity: "90",
         humidityCharacter: "humidityCharacter",
-        wind: 10,
+        wind: "10",
         windCharacter: "windCharacter",
       ));
       expect(stateBottom.putEmit, isA<DataStateBottom>());
@@ -75,7 +75,7 @@ void main() {
     test('save and change stateBaseWeather', () {
       stateBaseWeather.emit(DataStateBase(
           baseIcon: "baseIcon",
-          baseTemp: 20,
+          baseTemp: "20",
           baseWeather: "cloud"));
       expect(stateBaseWeather.uiData().baseWeather, "cloud");
     });
@@ -90,9 +90,9 @@ void main() {
     });
     test('save and change stateBottomWeather', () {
       stateBottomWeather.emit(DataStateBottom(
-          wind: 20,
+          wind: "20",
           windCharacter: "windCharacter",
-          humidity: 90,
+          humidity: "90",
           humidityCharacter: "humidityCharacter")
       );
       expect(stateBottomWeather.uiData().windCharacter, "windCharacter");
