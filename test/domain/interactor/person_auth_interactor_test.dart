@@ -1,5 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:weather_app/core/exception_handle.dart';
+import 'package:weather_app/domain/interactor/person_auth_interactor.dart';
 
 import '../../test_exception.dart';
 import '../fake/fake_person_auth_repository.dart';
@@ -14,7 +15,7 @@ void main() {
       personAuthRepository = FakePersonAuthRepository();
       personCacheRepository = FakePersonCacheRepository();
       personAuthInteractor = PersonAuthInteractorBase(
-        personAuthRepository: personAuthRepository,
+        authRepository: personAuthRepository,
         personCacheRepository: personCacheRepository,
       );
     });

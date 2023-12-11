@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 
-import '../fake/fake_auth_person_interactor.dart';
+import '../fake/fake_person_auth_interactor.dart';
 import '../fake/fake_navigation.dart';
 import '../fake/fake_person_cache_interactor.dart';
 

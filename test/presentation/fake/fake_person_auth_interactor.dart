@@ -2,7 +2,7 @@ import 'package:weather_app/core/exception_handle.dart';
 
 import 'fake_auth_person.dart';
 
-class FakeAuthPersonInteractor implements AuthPersonInteractor {
+class FakeAuthPersonInteractor implements PersonAuthInteractor {
   bool serverError = false;
   bool errorValidate = false;
   int callResponse = 0;
