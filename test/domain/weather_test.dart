@@ -24,6 +24,7 @@ void main() {
         ]
       );
     });
+
     test('Get day. from unix in date time', () {
       final day = weatherBase.day();
       expect(day, "24 May");
