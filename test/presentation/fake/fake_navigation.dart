@@ -1,3 +1,5 @@
+import 'package:weather_app/presentation/navigation/navigation.dart';
+
 class FakeNavigation implements Navigation {
   String putNavigate = "";
   int callShowProgressDialog = 0;

@@ -1,5 +1,3 @@
-import 'package:flutter/cupertino.dart';
-import 'package:weather_app/core/page_state.dart';
 import 'package:weather_app/presentation/view_model/state_page/weather_page_state.dart';
 
 class FakeWeatherPageState implements WeatherPageState {
@@ -9,21 +7,21 @@ class FakeWeatherPageState implements WeatherPageState {
   int callEmitBottom = 0;
   @override
   emitCity(DataStateCity uiData) {
-
+    callEmitCity++;
   }
 
   @override
   emitBase(DataStateBase uiData) {
-
+    callEmitBase++;
   }
 
   @override
   emitHour(DataStateHour uiData) {
-
+    callEmitHour++;
   }
 
   @override
   emitBottom(DataStateBottom uiData) {
-
+    callEmitBottom++;
   }
 }

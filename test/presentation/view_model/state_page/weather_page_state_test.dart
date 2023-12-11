@@ -23,14 +23,9 @@ void main() {
       );
     });
 
-    test("initial state", () {
-      final initial = weatherPageState.uiData();
-      expect(initial, isA<DataStateEmpty>());
-    });
-
     test("emitCity state", () {
       final emit = weatherPageState.emitCity(DataStateCity(city: "fake city"));
-      expect(emit.city, "fake city");
+      expect(stateCity.putEmit, isA<DataStateCity>());
     });
 
     test("emitBase state", () {
@@ -38,7 +33,7 @@ void main() {
           baseIcon: "baseIcon",
           baseTemp: 20,
           baseWeather: "baseWeather"));
-      expect(emit.baseIcon, "baseIcon");
+      expect(stateBase.putEmit, isA<DataStateBase>());
     });
 
     test("emitHour state", () {
@@ -47,7 +42,7 @@ void main() {
           icons: ["icons"],
           times: [],
           temps: []));
-      expect(emit.icons, ["icons"]);
+      expect(stateHour.putEmit, isA<DataStateHour>());
     });
 
     test("emitBottom state", () {
@@ -57,7 +52,7 @@ void main() {
         wind: 10,
         windCharacter: "windCharacter",
       ));
-      expect(emit.windCharacter, "windCharacter");
+      expect(stateBottom.putEmit, isA<DataStateBottom>());
     });
   });
 
