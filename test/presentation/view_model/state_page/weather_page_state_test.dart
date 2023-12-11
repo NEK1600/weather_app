@@ -4,7 +4,7 @@ import 'package:weather_app/core/page_state.dart';
 import 'package:weather_app/presentation/view_model/state_page/weather_page_state.dart';
 
 void main() {
-  group('save state', () {
+  group('changeState basePageState', () {
     late WeatherPageStateBase weatherPageState;
     late FakeStateCityWeather stateCity;
     late FakeStateBaseWeather stateBase;
@@ -59,6 +59,50 @@ void main() {
       ));
       expect(emit.windCharacter, "windCharacter");
     });
+  });
+
+  group("save States", () {
+    late StateCityWeather stateCityWeather;
+    late StateBaseWeather stateBaseWeather;
+    late StateHourWeather stateHourWeather;
+    late StateBottomWeather stateBottomWeather;
+    setUp(() {
+      stateCityWeather = StateCityWeather();
+      stateBaseWeather = StateBaseWeather();
+      stateHourWeather = StateHourWeather();
+      stateBottomWeather = StateBottomWeather();
+    });
+
+    test('save and change stateCityWeather', () {
+      stateCityWeather.emit(DataStateCity(city: "fake city"));
+      expect(stateCityWeather.uiData().city, "fake city");
+    });
+    test('save and change stateBaseWeather', () {
+      stateBaseWeather.emit(DataStateBase(
+          baseIcon: "baseIcon",
+          baseTemp: 20,
+          baseWeather: "cloud"));
+      expect(stateBaseWeather.uiData().baseWeather, "cloud");
+    });
+    test('save and change stateHourWeather', () {
+      stateHourWeather.emit(DataStateHour(
+          date: "date",
+          icons: ["icons"],
+          times: [],
+          temps: []
+      ));
+      expect(stateHourWeather.uiData().icons[0], "icons");
+    });
+    test('save and change stateBottomWeather', () {
+      stateBottomWeather.emit(DataStateBottom(
+          wind: 20,
+          windCharacter: "windCharacter",
+          humidity: 90,
+          humidityCharacter: "humidityCharacter")
+      );
+      expect(stateBottomWeather.uiData().windCharacter, "windCharacter");
+    });
+
   });
 }
 
