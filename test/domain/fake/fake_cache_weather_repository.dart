@@ -1,4 +1,4 @@
-import 'package:weather_app/domain/repositories/cache_weather_repository.dart';
+import 'package:weather_app/domain/repositories/cache_repository.dart';
 import 'package:weather_app/domain/weather.dart';
 
 import '../../presentation/fake/fake_weather.dart';

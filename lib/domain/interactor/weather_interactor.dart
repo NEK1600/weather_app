@@ -1,6 +1,6 @@
 import 'package:weather_app/core/exception_throw.dart';
 import 'package:weather_app/domain/location.dart';
-import 'package:weather_app/domain/repositories/cache_weather_repository.dart';
+import 'package:weather_app/domain/repositories/cache_repository.dart';
 import 'package:weather_app/domain/repositories/weather_repository.dart';
 import 'package:weather_app/domain/weather.dart';
 
