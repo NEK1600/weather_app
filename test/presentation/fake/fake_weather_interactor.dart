@@ -1,3 +1,5 @@
+import 'package:weather_app/domain/location.dart';
+
 import 'fake_weather.dart';
 
 class FakeWeatherInteractor implements WeatherInteractor {

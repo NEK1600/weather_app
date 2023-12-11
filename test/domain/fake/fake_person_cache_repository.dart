@@ -1,4 +1,5 @@
 import 'package:weather_app/core/exception_throw.dart';
+import 'package:weather_app/domain/person_auth.dart';
 
 import '../../presentation/fake/fake_auth_person.dart';
 
@@ -7,7 +8,7 @@ class FakePersonCacheRepository implements PersonCacheRepository<PersonAuth> {
   int callCache = 0;
   bool throwCacheError = false;
   @override
-  PersonAuth cache() {
+  PersonAuth cache(String key) {
     callCache++;
     if(throwCacheError) {
       throw CacheError();
@@ -16,7 +17,7 @@ class FakePersonCacheRepository implements PersonCacheRepository<PersonAuth> {
   }
 
   @override
-  Future save(String key) async {
+  Future save(PersonAuth data) async {
     callSave++;
   }
 }

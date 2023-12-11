@@ -1,20 +1,21 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:weather_app/domain/weather.dart';
 
 void main() {
   group('working with data WeatherBase', () {
     late WeatherBase weatherBase;
     setUp(() {
-      weatherBase = WeatherBase(
+      weatherBase = const WeatherBase(
         timezone: "fake city",
         hourly: [
-          HourWeather(
+          HourWeatherBase(
             dt: 1684926000,
             temp: 292.01,
             humidity: 91,
             windSpeed: 2.58,
             main:"Clouds",
           ),
-          HourWeather(
+          HourWeatherBase(
             dt: 1684926000,
             temp: 292.01,
             humidity: 20,
@@ -27,7 +28,7 @@ void main() {
 
     test('Get day. from unix in date time', () {
       final day = weatherBase.day();
-      expect(day, "24 May");
+      expect(day, "24 may");
     });
 
     test('Get list time. from unix in date time', () {
@@ -36,28 +37,37 @@ void main() {
     });
 
     test('Get temps. from calvin in celsius', () {
-      final temps = weatherBase.temsp();
+      final temps = weatherBase.temps();
       expect(temps[0], "18");
-    });
-
-    test('Get icon from main', () {
-      final icon = weatherBase.baseIcon();
-      expect(icon, "precipitation_up");
     });
 
     test('Get icons from main', () {
       final icons = weatherBase.icons();
-      expect(icons[0], "cloudy_min");
-      expect(icons[1], "thunderstorm_min");
+      expect(icons[0], "cloudy");
+      expect(icons[1], "thunderstorm");
     });
 
     test('Get humidity character', () {
-      final humidity = weatherBase.humidity();
+      const hourWeatherBase = HourWeatherBase(
+        dt: 1684926000,
+        temp: 292.01,
+        humidity: 91,
+        windSpeed: 2.58,
+        main:"Clouds",
+      );
+      final humidity = hourWeatherBase.humidityCharacter();
       expect(humidity, "высокая влажность");
     });
 
     test('Get wind character', () {
-      final wind = weatherBase.wind();
+      const hourWeatherBase = HourWeatherBase(
+        dt: 1684926000,
+        temp: 292.01,
+        humidity: 91,
+        windSpeed: 2.58,
+        main:"Clouds",
+      );
+      final wind = hourWeatherBase.windCharacter();
       expect(wind, "слабый ветер");
     });
   });
