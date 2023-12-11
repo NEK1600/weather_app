@@ -32,29 +32,9 @@ void main() {
       expect(cacheWeather.callCache, 1);
     });
 
-    test('city(Weather)', () {
-      String city = weatherInteractor.city(FakeWeather().weather());
-      expect(city, "America/Chicago");
-    });
-
     test('baseIcon(Weather)', () {
       String baseIcon = weatherInteractor.baseIcon(FakeWeather().weather());
-      expect(baseIcon, "precipitation_up");
-    });
-
-    test('currentTemp(Weather)', () {
-      String currentTemp = weatherInteractor.currentTemp(FakeWeather().weather());
-      expect(currentTemp, "18");
-    });
-
-    test('icons(Weather)', () {
-      List<String> icons = weatherInteractor.icons(FakeWeather().weather());
-      expect(icons[0], "cloudy_min");
-    });
-
-    test('temps(Weather)', () {
-      List<String> temps = weatherInteractor.temps(FakeWeather().weather());
-      expect(temps[0], "18");
+      expect(baseIcon, "cloudy_up");
     });
 
     test('humidity(Weather)', () {

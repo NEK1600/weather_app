@@ -1,65 +1,48 @@
+import 'package:weather_app/core/exception_throw.dart';
 import 'package:weather_app/domain/location.dart';
+import 'package:weather_app/domain/repositories/cache_weather_repository.dart';
 import 'package:weather_app/domain/repositories/weather_repository.dart';
 import 'package:weather_app/domain/weather.dart';
 
 abstract interface class WeatherInteractor {
   Future<Weather> responseWeather(LocationBase location);
-  String city(Weather weather);
-  List<String> icons(Weather weather);
-  List<String> temps(Weather weather);
   String humidity(Weather weather);
   String wind(Weather weather);
   String baseIcon(Weather weather);
-  String currentTemp(Weather weather);
 }
 
 class WeatherInteractorBase implements WeatherInteractor {
   final WeatherRepository weatherRepository;
-  final CacheWeatherRepository cacheWeather;
+  final CacheRepository<Weather> cacheWeather;
   WeatherInteractorBase({
     required this.weatherRepository,
     required this.cacheWeather,
   });
+
   @override
-  String baseIcon(Weather weather) {
-    // TODO: implement baseIcon
-    throw UnimplementedError();
+  Future<Weather> responseWeather(LocationBase location) async {
+    try {
+      final response = await weatherRepository.responseWeather(location);
+      cacheWeather.save(response, "weather");
+      return response;
+    } on ConnectError {
+      return cacheWeather.cache("weather");
+    }
   }
 
   @override
-  String city(Weather weather) {
-    // TODO: implement city
-    throw UnimplementedError();
+  String baseIcon(Weather weather) {
+    final String firstIcon = weather.icons()[0];
+    return "${firstIcon}_up";
   }
 
   @override
   String humidity(Weather weather) {
-    // TODO: implement humidity
-    throw UnimplementedError();
-  }
-
-  @override
-  List<String> icons(Weather weather) {
-    // TODO: implement icons
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<Weather> responseWeather(LocationBase location) {
-    // TODO: implement responseWeather
-    throw UnimplementedError();
-  }
-
-  @override
-  List<String> temps(Weather weather) {
-    // TODO: implement temps
-    throw UnimplementedError();
+    return weather.hourly[0].humidityCharacter();
   }
 
   @override
   String wind(Weather weather) {
-    // TODO: implement wind
-    throw UnimplementedError();
+    return weather.hourly[0].windCharacter();
   }
-
 }

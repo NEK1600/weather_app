@@ -3,19 +3,19 @@ import 'package:weather_app/domain/weather.dart';
 
 void main() {
   group('working with data WeatherBase', () {
-    late WeatherBase weatherBase;
+    late Weather weatherBase;
     setUp(() {
-      weatherBase = const WeatherBase(
+      weatherBase = const Weather(
         timezone: "fake city",
         hourly: [
-          HourWeatherBase(
+          HourWeather(
             dt: 1684926000,
             temp: 292.01,
             humidity: 91,
             windSpeed: 2.58,
             main:"Clouds",
           ),
-          HourWeatherBase(
+          HourWeather(
             dt: 1684926000,
             temp: 292.01,
             humidity: 20,
@@ -48,7 +48,7 @@ void main() {
     });
 
     test('Get humidity character', () {
-      const hourWeatherBase = HourWeatherBase(
+      const hourWeatherBase = HourWeather(
         dt: 1684926000,
         temp: 292.01,
         humidity: 91,
@@ -60,7 +60,7 @@ void main() {
     });
 
     test('Get wind character', () {
-      const hourWeatherBase = HourWeatherBase(
+      const hourWeatherBase = HourWeather(
         dt: 1684926000,
         temp: 292.01,
         humidity: 91,

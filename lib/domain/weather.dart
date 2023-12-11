@@ -1,22 +1,8 @@
-abstract interface class Weather {
-  String day();
-  List<String> times();
-  List<String> temps();
-  List<String> icons();
-
-}
-
-abstract interface class HourWeather {
-  String humidityCharacter();
-  String windCharacter();
-  String icon();
-}
-
-class WeatherBase implements Weather {
+class Weather {
   final String timezone;
   final List<HourWeather> hourly;
 
-  const WeatherBase({
+  const Weather({
     required this.hourly,
     required this.timezone
   });
@@ -25,7 +11,7 @@ class WeatherBase implements Weather {
   String day() {
     List months =
     ['jan', 'feb', 'mar', 'apr', 'may','jun','jul','aug','sep','oct','nov','dec'];
-    final date = DateTime.fromMillisecondsSinceEpoch((hourly[0] as HourWeatherBase).dt * 1000, isUtc: true);
+    final date = DateTime.fromMillisecondsSinceEpoch(hourly[0] .dt * 1000, isUtc: true);
     final day = date.day;
     final month = date.month;
     return "$day ${months[month-1]}";
@@ -42,7 +28,6 @@ class WeatherBase implements Weather {
   List<String> temps() {
     List<String> list = [];
     hourly.map((item) {
-      item as HourWeatherBase;
       final data = item.temp - 273.15;
       list.add(data.toInt().toString());
     }).toList();
@@ -53,7 +38,6 @@ class WeatherBase implements Weather {
   List<String> times() {
     List<String> list = [];
     hourly.map((item) {
-      item as HourWeatherBase;
       final date = DateTime.fromMillisecondsSinceEpoch(item.dt * 1000, isUtc: true);
       list.add("${date.hour.toInt().toString()}:00");
     }).toList();
@@ -61,13 +45,13 @@ class WeatherBase implements Weather {
   }
 }
 
-class HourWeatherBase implements HourWeather {
+class HourWeather {
   final int dt;
   final double temp;
   final int humidity;
   final double windSpeed;
   final String main;
-  const HourWeatherBase({
+  const HourWeather({
     required this.dt,
     required this.temp,
     required this.humidity,
@@ -75,7 +59,6 @@ class HourWeatherBase implements HourWeather {
     required this.main,
   });
 
-  @override
   String humidityCharacter() {
     if(humidity > 90) {
       return "высокая влажность";
@@ -84,7 +67,6 @@ class HourWeatherBase implements HourWeather {
     }
   }
 
-  @override
   String windCharacter() {
     if(windSpeed > 3) {
       return "сильный ветер";
@@ -93,7 +75,6 @@ class HourWeatherBase implements HourWeather {
     }
   }
 
-  @override
   String icon() {
     if(main == "Clouds") {
       return "cloudy";

@@ -13,7 +13,7 @@ class FakeCacheWeatherRepository implements CacheRepository<Weather> {
   }
 
   @override
-  Future save(Weather data) async {
+  Future save(Weather data, String key) async {
     callSave++;
   }
 }
