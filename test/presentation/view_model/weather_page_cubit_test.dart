@@ -27,8 +27,11 @@ void main() {
         expect(weatherInteractor.callBaseIcon, 1);
         expect(weatherInteractor.callWind, 1);
         expect(weatherInteractor.callCity, 1);
-        expect(pageState.callEmit, 1);
-      });    
+        expect(pageState.callEmitCity, 1);
+        expect(pageState.callEmitBase, 1);
+        expect(pageState.callEmitHour, 1);
+        expect(pageState.callEmitBottom, 1);
+      });
       
       test("constrains fun return pageState", () async {
          final state = weatherPageCubit.weatherState();

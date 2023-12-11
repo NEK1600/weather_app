@@ -1,16 +1,29 @@
 import 'package:flutter/cupertino.dart';
 import 'package:weather_app/core/page_state.dart';
+import 'package:weather_app/presentation/view_model/state_page/weather_page_state.dart';
 
-class FakeWeatherPageState with ChangeNotifier implements PageState<WeatherUiData> {
-  int callEmit = 0;
-  int callUiData = 0;
+class FakeWeatherPageState implements WeatherPageState {
+  int callEmitCity = 0;
+  int callEmitBase = 0;
+  int callEmitHour = 0;
+  int callEmitBottom = 0;
   @override
-  emit(WeatherUiData uiData) {
-    callEmit++;
+  emitCity(DataStateCity uiData) {
+
   }
 
   @override
-  WeatherUiData uiData() {
-    callUiData++;
+  emitBase(DataStateBase uiData) {
+
+  }
+
+  @override
+  emitHour(DataStateHour uiData) {
+
+  }
+
+  @override
+  emitBottom(DataStateBottom uiData) {
+
   }
 }
