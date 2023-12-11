@@ -1,8 +1,8 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:weather_app/presentation/view_model/login_page_cubit.dart';
 
 import '../fake/fake_person_auth_interactor.dart';
 import '../fake/fake_navigation.dart';
-import '../fake/fake_person_cache_interactor.dart';
 
 void main() {
   group("call necessary fun", () {
@@ -13,8 +13,8 @@ void main() {
       authPersonInteractor = FakeAuthPersonInteractor();
       navigate = FakeNavigation();
       loginCubit = LoginPageCubit(
-        navigate: navigate,
-        authPersonInteractor: authPersonInteractor,
+        personAuthInteractor: authPersonInteractor,
+        navigation: navigate,
       );
     });
     test("error validate", () async {
@@ -31,15 +31,13 @@ void main() {
       expect(navigate.callShowProgressDialog, 1);
       expect(authPersonInteractor.callResponse, 1);
       expect(navigate.callShowBaseDialog, 1);
-      expect(personCacheInteractor.callSaveCache, 0);
     });
 
     test("success", () async {
       await loginCubit.login("", "");
       expect(navigate.callShowProgressDialog, 1);
       expect(authPersonInteractor.callResponse, 1);
-      expect(navigate, "weatherPage");
-      expect(personCacheInteractor.callSaveCache, 1);
+      expect(navigate.putNavigate, "weatherPage");
     });
 
   });
