@@ -117,3 +117,5 @@ class WeatherPage extends StatelessWidget {
     );
   }
 }
+
+class ChangeState
