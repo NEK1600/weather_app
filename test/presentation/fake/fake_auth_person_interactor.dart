@@ -8,7 +8,7 @@ class FakeAuthPersonInteractor implements AuthPersonInteractor {
   int callResponse = 0;
 
   @override
-  String valifdate(String email, String password) {
+  String validate(String email, String password) {
     if(errorValidate) {
       return "failure";
     } else {
@@ -23,7 +23,6 @@ class FakeAuthPersonInteractor implements AuthPersonInteractor {
       return Failure(CachePersonFailure(message: "fake message"));
     } else {
       return Success(FakeAuthPerson().authPerson());
-      //TODO сохранение в кеше
     }
   }
 }
