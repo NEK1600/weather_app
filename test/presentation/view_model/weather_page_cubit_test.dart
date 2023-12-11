@@ -21,6 +21,12 @@ void main() {
       test("initialWeather()", () async {
         await weatherPageCubit.initialWeather();
         expect(weatherInteractor.callResponseWeather, 1);
+        expect(weatherInteractor.callTemps, 1);
+        expect(weatherInteractor.callIcons, 1);
+        expect(weatherInteractor.callHumidity, 1);
+        expect(weatherInteractor.callBaseIcon, 1);
+        expect(weatherInteractor.callWind, 1);
+        expect(weatherInteractor.callCity, 1);
         expect(pageState.callEmit, 1);
       });    
       

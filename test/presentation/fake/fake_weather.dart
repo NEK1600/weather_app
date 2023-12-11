@@ -1,27 +1,23 @@
 class FakeWeather {
   Weather weather() {
-    return Weather(
-      timezone: "America/Chicago",
-      hourly: [
-        WeatherHour(
-          hout: "15:00",
-          temp: "15",
-          main: "Clouds",
-
-        ),
-        WeatherHour(
-          hout: "16:00",
-          temp: "15"
-        ),
-        WeatherHour(
-          hout: "17:00",
-          temp: "15"
-        ),
-        WeatherHour(
-          hout: "18:00",
-          temp: "15"
-        ),
-      ],
+    return WeatherBase(
+        timezone: "fake city",
+        hourly: [
+          HourWeather(
+            dt: 1684926000,
+            temp: 292.01,
+            humidity: 91,
+            windSpeed: 2.58,
+            main:"Clouds",
+          ),
+          HourWeather(
+            dt: 1684926000,
+            temp: 292.01,
+            humidity: 20,
+            windSpeed: 2.58,
+            main:"Thunderstorm",
+          ),
+        ]
     );
   }
 }
