@@ -33,3 +33,12 @@ class ServerFailure implements CustomFailure {
     return message;
   }
 }
+
+class LocationFailure implements CustomFailure {
+  final String message;
+  LocationFailure({required this.message});
+  @override
+  String messageError() {
+    return message;
+  }
+}

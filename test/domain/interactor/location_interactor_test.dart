@@ -1,4 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:weather_app/domain/interactor/location_interactor.dart';
 
 import '../fake/fake_location_repository.dart';
 
@@ -8,7 +9,7 @@ void main() {
     late FakeLocationRepository locationRepository;
     setUp(() {
       locationRepository = FakeLocationRepository();
-      locationInteractor = LocationInteractor(
+      locationInteractor = LocationInteractorBase(
         locationRepository: locationRepository,
       );
     });
