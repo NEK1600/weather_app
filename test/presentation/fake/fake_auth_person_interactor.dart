@@ -23,6 +23,7 @@ class FakeAuthPersonInteractor implements AuthPersonInteractor {
       return Failure(CachePersonFailure(message: "fake message"));
     } else {
       return Success(FakeAuthPerson().authPerson());
+      //TODO сохранение в кеше
     }
   }
 }

@@ -9,15 +9,12 @@ void main() {
     late LoginPageCubit loginCubit;
     late FakeNavigation navigate;
     late FakeAuthPersonInteractor authPersonInteractor;
-    late FakePersonCacheInteractor personCacheInteractor;
     setUp(() {
       authPersonInteractor = FakeAuthPersonInteractor();
       navigate = FakeNavigation();
-      personCacheInteractor = FakePersonCacheInteractor();
       loginCubit = LoginPageCubit(
         navigate: navigate,
         authPersonInteractor: authPersonInteractor,
-        personCacheInteractor: personCacheInteractor,
       );
     });
     test("error validate", () async {

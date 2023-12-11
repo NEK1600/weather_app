@@ -9,7 +9,7 @@ class FakeWeatherInteractor implements WeatherInteractor {
   int callHumidity = 0;
   int callWind = 0;
   @override
-  Future<Weather> responseWeather() async {
+  Future<Weather> responseWeather(Location location) async {
     callResponseWeather++;
     return FakeWeather().weather();
   }

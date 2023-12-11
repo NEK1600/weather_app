@@ -1,5 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 
+import '../fake/fake_location_interactor.dart';
 import '../fake/fake_weather_interactor.dart';
 import '../fake/fake_weather_page_state.dart';
 
@@ -7,9 +8,11 @@ void main() {
   group("all", () {
     late WeatherPageCubit weatherPageCubit;
     late FakeWeatherInteractor weatherInteractor;
+    late FakeLocationInteractor locationInteractor;
     late FakeWeatherPageState pageState;
     setUp(() {
       weatherInteractor = FakeWeatherInteractor();
+      locationInteractor = FakeLocationInteractor();
       pageState = FakeWeatherPageState();
       weatherPageCubit = WeatherPageCubit(
         weatherInteractor: weatherInteractor,
@@ -20,6 +23,7 @@ void main() {
     group('call necessary fun', () {
       test("initialWeather()", () async {
         await weatherPageCubit.initialWeather();
+        expect(locationInteractor.callLocation, 1);
         expect(weatherInteractor.callResponseWeather, 1);
         expect(weatherInteractor.callTemps, 1);
         expect(weatherInteractor.callIcons, 1);

@@ -19,14 +19,14 @@ void main() {
 
     test('initialApp()', () async {
       await initialCubit.initialApp();
-      expect(personCache.callCache, 1);
+      expect(personCache.callFound, 1);
       expect(navigation.putNavigate, "weatherPage");
     });
 
     test('initialApp(), person not found', () async {
       personCache.personFound = false;
       await initialCubit.initialApp();
-      expect(personCache.callCache, 1);
+      expect(personCache.callFound, 1);
       expect(navigation.putNavigate, "loginPage");
     });
   });
