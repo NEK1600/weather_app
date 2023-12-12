@@ -9,8 +9,8 @@ class LocationRepositoryBase implements LocationRepository {
   Future<LocationBase> location() async {
     final local = await locationService.getLocation();
     final LocationBase location = LocationBase(
-        lat: local.latitude!,
-        long: local.longitude!
+        lat: local.latitude,
+        long: local.longitude
     );
     return location;
   }

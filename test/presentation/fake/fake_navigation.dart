@@ -18,4 +18,10 @@ class FakeNavigation implements Navigation {
   showBaseDialog(String message) {
     callShowBaseDialog++;
   }
+
+  @override
+  pop() {
+    // TODO: implement pop
+    throw UnimplementedError();
+  }
 }

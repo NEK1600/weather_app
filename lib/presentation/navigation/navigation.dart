@@ -4,6 +4,7 @@ abstract interface class Navigation {
   navigate(String page);
   showProgressDialog();
   showBaseDialog(String message);
+  pop();
 }
 
 class NavigationBase implements Navigation {
@@ -26,5 +27,10 @@ class NavigationBase implements Navigation {
   @override
   showProgressDialog() {
     router.pushNamed("progressDialog");
+  }
+
+  @override
+  pop() {
+    router.pop();
   }
 }

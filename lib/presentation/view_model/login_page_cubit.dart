@@ -19,12 +19,15 @@ class LoginPageCubit extends Cubit<Widget> {
       final response = await personAuthInteractor.response(email, password);
       final result = switch (response) {
         Success(value:  final r) => navigation.navigate("weatherPage"),
-        Failure(value: final e) => navigation.showBaseDialog("ошибка регистрации")
+        Failure(value: final e) => _navigateDialog()
       };
     } else {
       navigation.showBaseDialog("заполните все поля");
     }
   }
 
-
+  _navigateDialog() {
+    navigation.pop();
+    navigation.showBaseDialog("ошибка регистрации");
+  }
 }

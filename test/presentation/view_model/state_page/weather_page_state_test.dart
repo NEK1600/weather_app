@@ -60,16 +60,20 @@ void main() {
   group("save States", () {
     late StateMutableBase<DataStateBase> stateMutableWeather;
     setUp(() {
-      stateMutableWeather = StateMutableBase<DataStateBase>();
+      stateMutableWeather = StateMutableBase<DataStateBase>(
+        data: DataStateBase(
+          baseWeather: "",
+          baseTemp: "",
+          baseIcon: ""
+        )
+      );
     });
     test('save and change stateBaseWeather', () {
-      expect(stateMutableWeather.emptyState(), true);
       stateMutableWeather.emit(DataStateBase(
           baseIcon: "baseIcon",
           baseTemp: "20",
           baseWeather: "cloud"));
       expect(stateMutableWeather.uiData().baseWeather, "cloud");
-      expect(stateMutableWeather.emptyState(), false);
     });
 
   });

@@ -39,12 +39,12 @@ class WeatherInteractorBase implements WeatherInteractor {
 
   @override
   String humidity(Weather weather) {
-    return weather.hourly[0].humidityCharacter();
+    return weather.hourly[0].humidity.toString();
   }
 
   @override
   String wind(Weather weather) {
-    return weather.hourly[0].windCharacter();
+    return weather.hourly[0].windSpeed.toString();
   }
 
   @override

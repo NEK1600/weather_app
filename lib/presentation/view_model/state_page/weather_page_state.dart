@@ -41,6 +41,7 @@ class WeatherPageStateBase implements WeatherPageState {
 
 class DataStateCity {
   final String city;
+
   DataStateCity({required this.city});
 }
 
@@ -79,4 +80,31 @@ class DataStateBottom {
     required this.humidity,
     required this.humidityCharacter,
   });
+}
+
+class DataStateWeatherEmpty {
+  DataStateBottom dataStateBottom() {
+    return DataStateBottom(
+        windCharacter: "",
+        wind: "",
+        humidityCharacter: "",
+        humidity: ""
+    );
+  }
+
+  DataStateCity dataStateCity() {
+    return DataStateCity(city: "");
+  }
+
+  DataStateHour dataStateHour() {
+    return DataStateHour(date: "",
+        icons: ["sun_min" , "snow_min" , "cloudy_min" , "cloudy_min"],
+        times: ["" , "" , "" , ""],
+        temps: ["" , "" , "" , ""]
+    );
+  }
+
+  DataStateBase dataStateBase() {
+    return DataStateBase(baseIcon: "sun_up", baseTemp: "", baseWeather: "");
+  }
 }

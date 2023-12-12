@@ -10,6 +10,7 @@ import 'package:weather_app/data/serialization.dart';
 import 'package:weather_app/data/weather_service.dart';
 import 'package:weather_app/di/navigation_di.dart';
 import 'package:weather_app/di/package_di.dart';
+import 'package:weather_app/di/ui_state_di.dart';
 import 'package:weather_app/domain/interactor/location_interactor.dart';
 import 'package:weather_app/domain/interactor/person_auth_interactor.dart';
 import 'package:weather_app/domain/interactor/person_cache_interactor.dart';
@@ -21,6 +22,7 @@ import 'package:weather_app/presentation/view_model/state_page/weather_page_stat
 import 'package:weather_app/presentation/view_model/weather_page_cubit.dart';
 
 class ViewModelDi {
+  UiStateDi uiState = UiStateDi();
   final NavigationDi navigationDi;
   final PackageDi packageDi;
   late InitialCubit initialCubit;
@@ -29,16 +31,12 @@ class ViewModelDi {
   ViewModelDi({required this.packageDi, required this.navigationDi});
 
   Future init() async {
+    uiState.init();
     weatherCubit = WeatherPageCubit(
-        pageState: WeatherPageStateBase(
-          stateBase: StateMutableBase<DataStateBase>(),
-          stateBottom: StateMutableBase<DataStateBottom>(),
-          stateCity: StateMutableBase<DataStateCity>(),
-          stateHour: StateMutableBase<DataStateHour>(),
-        ),
+        pageState: uiState.weatherPageStateBase,
         locationInteractor: LocationInteractorBase(
           locationRepository: LocationRepositoryBase(
-              locationService: LocationServiceBase(location: packageDi.location)
+              locationService: LocationServiceMock()
           ),
         ),
         weatherInteractor: WeatherInteractorBase(

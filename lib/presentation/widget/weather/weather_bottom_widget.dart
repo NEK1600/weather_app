@@ -20,13 +20,13 @@ class WeatherBottomWidget extends StatelessWidget {
             children: [
               const Icon(Icons.cloud, color: Colors.white,),
               const SizedBox(width: 6),
-              Text(specifications, style: const TextStyle(
+              Text(weather, style: const TextStyle(
                 fontWeight: FontWeight.w500,
                 fontSize: 15,
                 color: Color(0x33FFFFFF)
               )),
               const SizedBox(width: 6),
-              Text(weather, style: const TextStyle(
+              Text(specifications, style: const TextStyle(
                 fontWeight: FontWeight.w400,
                 fontSize: 15,
                 color: Colors.white

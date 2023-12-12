@@ -22,31 +22,33 @@ class LoginPageBase extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(left: 26, right: 24, top: 11, bottom: 16),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Padding(
-            padding: EdgeInsets.only(bottom: 12),
-            child: Text(
-              "Вход",
-              style: TextStyle(fontSize: 28, fontWeight: FontWeight.w500),
-            )
-          ),
-          const Text(
-            "Введите данные для входа",
-            style: TextStyle(
-                fontSize: 15,
-                fontWeight: FontWeight.w400,
-                color: Color(0xFF8799A5)
+    return Scaffold(
+      body: Padding(
+        padding: const EdgeInsets.only(left: 26, right: 24, top: 20, bottom: 16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Padding(
+              padding: EdgeInsets.only(bottom: 12),
+              child: Text(
+                "Вход",
+                style: TextStyle(fontSize: 28, fontWeight: FontWeight.w500),
+              )
             ),
-          ),
-          const SizedBox(height: 20),
-          TextInputWidget(textController: emailController, label: "Email"),
-          TextInputWidget(textController: passwordController, label: "Пароль"),
-          ButtonLoginWidget(email: emailController.text, password: passwordController.text),
-        ],
+            const Text(
+              "Введите данные для входа",
+              style: TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w400,
+                  color: Color(0xFF8799A5)
+              ),
+            ),
+            const SizedBox(height: 20),
+            TextInputWidget(textController: emailController, label: "Email"),
+            TextInputWidget(textController: passwordController, label: "Пароль"),
+            ButtonLoginWidget(email: emailController, password: passwordController),
+          ],
+        ),
       ),
     );
   }

@@ -17,6 +17,7 @@ class FirebaseServiceImpl implements FirebaseService {
       );
       return credential;
     } on FirebaseAuthException catch (e) {
+      print("test1 ${e}");
       throw ServerError();
     }
   }
