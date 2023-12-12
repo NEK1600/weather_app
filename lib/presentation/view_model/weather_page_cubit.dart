@@ -34,6 +34,7 @@ class WeatherPageCubit extends Cubit<Widget> {
     Weather response = await weatherInteractor.responseWeather(location);
     final humidity = weatherInteractor.humidity(response);
     final baseIcon = weatherInteractor.baseIcon(response);
+    final iconsMin = weatherInteractor.iconsMin(response);
     final wind = weatherInteractor.wind(response);
     pageState.emitCity(DataStateCity(city: response.timezone));
     pageState.emitBase(DataStateBase(
@@ -42,7 +43,7 @@ class WeatherPageCubit extends Cubit<Widget> {
         baseWeather: response.hourly[0].main));
     pageState.emitHour(DataStateHour(
         date: response.day(),
-        icons: response.icons(),
+        icons: iconsMin,
         times: response.times(),
         temps: response.temps()));
     pageState.emitBottom(DataStateBottom(

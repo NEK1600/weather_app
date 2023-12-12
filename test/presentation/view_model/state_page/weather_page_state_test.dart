@@ -1,20 +1,21 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:weather_app/core/page_state.dart';
+import 'package:weather_app/presentation/view_model/state_page/state_mutable_base.dart';
 import 'package:weather_app/presentation/view_model/state_page/weather_page_state.dart';
 
 void main() {
   group('changeState basePageState', () {
     late WeatherPageStateBase weatherPageState;
-    late FakeStateCityWeather stateCity;
-    late FakeStateBaseWeather stateBase;
-    late FakeStateHourWeather stateHour;
-    late FakeStateBottomWeather stateBottom;
+    late FakeMutableWeather<DataStateBase> stateBase;
+    late FakeMutableWeather<DataStateCity> stateCity;
+    late FakeMutableWeather<DataStateBottom> stateBottom;
+    late FakeMutableWeather<DataStateHour> stateHour;
     setUp(() {
-      stateCity = FakeStateCityWeather();
-      stateBase = FakeStateBaseWeather();
-      stateHour = FakeStateHourWeather();
-      stateBottom = FakeStateBottomWeather();
+      stateBase = FakeMutableWeather();
+      stateCity = FakeMutableWeather();
+      stateBottom = FakeMutableWeather();
+      stateHour = FakeMutableWeather();
       weatherPageState = WeatherPageStateBase(
         stateCity: stateCity,
         stateBase: stateBase,
@@ -57,99 +58,37 @@ void main() {
   });
 
   group("save States", () {
-    late StateCityWeather stateCityWeather;
-    late StateBaseWeather stateBaseWeather;
-    late StateHourWeather stateHourWeather;
-    late StateBottomWeather stateBottomWeather;
+    late StateMutableBase<DataStateBase> stateMutableWeather;
     setUp(() {
-      stateCityWeather = StateCityWeather();
-      stateBaseWeather = StateBaseWeather();
-      stateHourWeather = StateHourWeather();
-      stateBottomWeather = StateBottomWeather();
-    });
-
-    test('save and change stateCityWeather', () {
-      stateCityWeather.emit(DataStateCity(city: "fake city"));
-      expect(stateCityWeather.uiData().city, "fake city");
+      stateMutableWeather = StateMutableBase<DataStateBase>();
     });
     test('save and change stateBaseWeather', () {
-      stateBaseWeather.emit(DataStateBase(
+      expect(stateMutableWeather.emptyState(), true);
+      stateMutableWeather.emit(DataStateBase(
           baseIcon: "baseIcon",
           baseTemp: "20",
           baseWeather: "cloud"));
-      expect(stateBaseWeather.uiData().baseWeather, "cloud");
-    });
-    test('save and change stateHourWeather', () {
-      stateHourWeather.emit(DataStateHour(
-          date: "date",
-          icons: ["icons"],
-          times: [],
-          temps: []
-      ));
-      expect(stateHourWeather.uiData().icons[0], "icons");
-    });
-    test('save and change stateBottomWeather', () {
-      stateBottomWeather.emit(DataStateBottom(
-          wind: "20",
-          windCharacter: "windCharacter",
-          humidity: "90",
-          humidityCharacter: "humidityCharacter")
-      );
-      expect(stateBottomWeather.uiData().windCharacter, "windCharacter");
+      expect(stateMutableWeather.uiData().baseWeather, "cloud");
+      expect(stateMutableWeather.emptyState(), false);
     });
 
   });
 }
 
-class FakeStateCityWeather with ChangeNotifier implements PageState<DataStateCity> {
-  late DataStateCity putEmit;
+class FakeMutableWeather<T> with ChangeNotifier implements PageState<T> {
+  T? putEmit;
   @override
-  emit(DataStateCity uiData) {
+  emit(T uiData) {
     putEmit = uiData;
   }
 
   @override
-  DataStateCity uiData() {
-    return putEmit;
-  }
-}
-
-class FakeStateBaseWeather with ChangeNotifier implements PageState<DataStateBase> {
-  late DataStateBase putEmit;
-  @override
-  emit(DataStateBase uiData) {
-    putEmit = uiData;
+  T uiData() {
+    return putEmit!;
   }
 
   @override
-  DataStateBase uiData() {
-    return putEmit;
+  bool emptyState() {
+    return false;
   }
-}
-
-class FakeStateHourWeather with ChangeNotifier implements PageState<DataStateHour> {
-  late DataStateHour putEmit;
-  @override
-  emit(DataStateHour uiData) {
-    putEmit = uiData;
-  }
-
-  @override
-  DataStateHour uiData() {
-    return putEmit;
-  }
-}
-
-class FakeStateBottomWeather with ChangeNotifier implements PageState<DataStateBottom> {
-  late DataStateBottom putEmit;
-  @override
-  emit(DataStateBottom uiData) {
-    putEmit = uiData;
-  }
-
-  @override
-  DataStateBottom uiData() {
-    return putEmit;
-  }
-
 }

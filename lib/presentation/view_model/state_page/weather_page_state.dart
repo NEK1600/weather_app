@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:weather_app/core/page_state.dart';
 
 abstract interface class WeatherPageState {
@@ -39,73 +38,12 @@ class WeatherPageStateBase implements WeatherPageState {
     stateHour.emit(uiData);
   }
 }
-
-class StateCityWeather with ChangeNotifier implements PageState<DataStateCity> {
-  late DataStateCity _data;
-  @override
-  emit(DataStateCity uiData) {
-    _data = uiData;
-    notifyListeners();
-  }
-
-  @override
-  DataStateCity uiData() {
-    return _data;
-  }
-
-}
-
-class StateBaseWeather with ChangeNotifier implements PageState<DataStateBase> {
-  late DataStateBase _data;
-  @override
-  emit(DataStateBase uiData) {
-    _data = uiData;
-    notifyListeners();
-  }
-
-  @override
-  DataStateBase uiData() {
-    return _data;
-  }
-
-}
-
-class StateHourWeather with ChangeNotifier implements PageState<DataStateHour> {
-  late DataStateHour _data;
-  @override
-  emit(DataStateHour uiData) {
-    _data = uiData;
-    notifyListeners();
-  }
-
-  @override
-  DataStateHour uiData() {
-    return _data;
-  }
-
-}
-
-class StateBottomWeather with ChangeNotifier implements PageState<DataStateBottom> {
-  late DataStateBottom _data;
-  @override
-  emit(DataStateBottom uiData) {
-    _data = uiData;
-    notifyListeners();
-  }
-
-  @override
-  DataStateBottom uiData() {
-    return _data;
-  }
-
-}
-
 class DataStateCity {
   final String city;
   DataStateCity({required this.city});
 }
 
-class DataStateBase {
+class DataStateBase  {
   final String baseIcon;
   final String baseTemp;
   final String baseWeather;

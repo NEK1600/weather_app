@@ -9,6 +9,7 @@ abstract interface class WeatherInteractor {
   String humidity(Weather weather);
   String wind(Weather weather);
   String baseIcon(Weather weather);
+  List<String> iconsMin(Weather weather);
 }
 
 class WeatherInteractorBase implements WeatherInteractor {
@@ -44,5 +45,12 @@ class WeatherInteractorBase implements WeatherInteractor {
   @override
   String wind(Weather weather) {
     return weather.hourly[0].windCharacter();
+  }
+
+  @override
+  List<String> iconsMin(Weather weather) {
+    List<String> icons = [];
+    weather.icons().map((item) => icons.add("${item}_min")).toList();
+    return icons;
   }
 }

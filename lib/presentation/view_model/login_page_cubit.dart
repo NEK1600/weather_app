@@ -1,9 +1,6 @@
-
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app/core/exception_handle.dart';
-import 'package:weather_app/domain/interactor/location_interactor.dart';
 import 'package:weather_app/domain/interactor/person_auth_interactor.dart';
 import 'package:weather_app/presentation/navigation/navigation.dart';
 

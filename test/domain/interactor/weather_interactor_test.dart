@@ -46,5 +46,10 @@ void main() {
       String wind = weatherInteractor.wind(FakeWeather().weather());
       expect(wind, "слабый ветер");
     });
+
+    test('iconstMin(Weather)', () {
+      List<String> icons = weatherInteractor.iconsMin(FakeWeather().weather());
+      expect(icons[0], "cloudy_min");
+    });
   });
 }
