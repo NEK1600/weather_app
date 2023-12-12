@@ -31,4 +31,9 @@ class FakeWeatherInteractor implements WeatherInteractor {
     callWind++;
     return "";
   }
+
+  @override
+  List<String> iconsMin(Weather weather) {
+    return [];
+  }
 }

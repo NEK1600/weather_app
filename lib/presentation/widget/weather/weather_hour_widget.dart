@@ -1,20 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:weather_app/presentation/view_model/state_page/weather_page_state.dart';
+import 'package:weather_app/presentation/view_model/weather_page_cubit.dart';
 
 class WeatherHourWidget extends StatelessWidget {
-  const WeatherHourWidget({Key? key}) : super(key: key);
+  final int index;
+  const WeatherHourWidget({super.key,
+    required this.index,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.all(16),
+    final stateWeather = context.read<WeatherPageCubit>().weatherState() as WeatherPageStateBase;
+    final stateData = stateWeather.stateHour.uiData();
+    return Padding(
+      padding: const EdgeInsets.all(16),
       child: Column(
         children: [
-          _TextWeatherWidget(text: "15:00"),
+          _TextWeatherWidget(text: stateData.times[index]),
           Padding(
-            padding: EdgeInsets.only(top: 10, bottom: 10),
-            child: Image(image: AssetImage('assets/sun_min.png')),
+            padding: const EdgeInsets.only(top: 10, bottom: 10),
+            child: Image(image: AssetImage('assets/${stateData.icons[index]}.png')),
           ),
-          _TextWeatherWidget(text: "23º"),
+          _TextWeatherWidget(text: "${stateData.temps[index]}º"),
         ],
       ),
     );

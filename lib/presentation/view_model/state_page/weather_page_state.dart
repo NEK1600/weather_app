@@ -38,6 +38,7 @@ class WeatherPageStateBase implements WeatherPageState {
     stateHour.emit(uiData);
   }
 }
+
 class DataStateCity {
   final String city;
   DataStateCity({required this.city});

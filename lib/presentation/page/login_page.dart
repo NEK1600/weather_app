@@ -1,11 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:weather_app/di/base_provider.dart';
 import 'package:weather_app/presentation/widget/login/button_login_widget.dart';
 import 'package:weather_app/presentation/widget/login/text_input_widget.dart';
 
 class LoginPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final bloc = context.getInheritedWidgetOfExactType<BaseProvider>()!.baseDi.loginCubit();
+    return BlocProvider(
+      create: (_) => bloc,
+      child: LoginPageBase(),
+    );
+  }
+}
+
+class LoginPageBase extends StatelessWidget {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  LoginPage({Key? key}) : super(key: key);
+  LoginPageBase({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
