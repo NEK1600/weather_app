@@ -224,4 +224,3 @@ class _BaseWidget extends StatelessWidget {
     );
   }
 }
-

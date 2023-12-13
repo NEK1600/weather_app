@@ -13,11 +13,12 @@ class InitialApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BaseProvider(
-      baseDi: baseDi,
-      child: BlocProvider(
-        create: (context) => baseDi.initialCubit()..initialApp(),
-        lazy: false,
+    print("test1 InitialApp class ");
+    return BlocProvider(
+      create: (_) => baseDi.initialCubit()..initialApp(),
+      lazy: false,
+      child: BaseProvider(
+        baseDi: baseDi,
         child: MaterialApp.router(
           title: 'Flutter Demo',
           routerConfig: baseDi.router(),

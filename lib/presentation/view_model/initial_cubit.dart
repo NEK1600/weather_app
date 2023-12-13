@@ -13,6 +13,7 @@ class InitialCubit extends Cubit<Widget> {
   }) : super(Container());
 
   Future<void> initialApp() async {
+    print("test1 initialApp()");
     final found = personCache.found();
     final result = switch (found) {
       Success(value:  final r) => navigation.navigate("weatherPage"),
