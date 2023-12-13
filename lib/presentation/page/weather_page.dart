@@ -25,11 +25,6 @@ class WeatherPageBase extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final stateWeather = context.read<WeatherPageCubit>().weatherState() as WeatherPageStateBase;
-    final stateCity = stateWeather.stateCity;
-    final stateBase = stateWeather.stateBase;
-    final stateBottom = stateWeather.stateBottom;
-    final stateHour = stateWeather.stateHour;
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
@@ -45,53 +40,16 @@ class WeatherPageBase extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(height: 10),
-                Row(
+                const Row(
                   children: [
-                    const Icon(Icons.location_on, color: Colors.white),
-                    const SizedBox(width: 5),
-                    ListenableBuilder(
-                        listenable: stateCity,
-                        builder: (context, widget) {
-                          return Text(stateCity.uiData().city, style: const TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.w500,
-                              color: Colors.white
-                            )
-                          );
-                        }
-                    ),
+                    Icon(Icons.location_on, color: Colors.white),
+                    SizedBox(width: 5),
+                    _CityWidget(),
                   ],
                 ),
                 Column(
                   children: [
-                    ListenableBuilder(
-                      listenable: stateBase,
-                      builder: (context, widget) {
-                        return Column(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(15),
-                              child: Image(image: AssetImage('assets/${stateBase.uiData().baseIcon}.png')),
-                            ),
-                            Text("${stateBase.uiData().baseTemp}º", style: const TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.w500,
-                                fontSize: 64
-                            ),),
-                            Text(stateBase.uiData().baseWeather, style: const TextStyle(
-                                color: Colors.white,
-                                fontSize: 17,
-                                fontWeight: FontWeight.w400
-                            ),),
-                            const Text("Макс:31ºМин:25º", style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 17,
-                                fontWeight: FontWeight.w400
-                            )),
-                        ],
-                      );
-                      }
-                    ),
+                    const _BaseWidget(),
                     const SizedBox(height: 10),
                     Container(
                       decoration: BoxDecoration(
@@ -102,69 +60,30 @@ class WeatherPageBase extends StatelessWidget {
                       ),
                       child: Column(
                         children: [
-                          Padding(
-                            padding: const EdgeInsets.only(top: 10, left: 10, right: 10),
+                          const Padding(
+                            padding: EdgeInsets.only(top: 10, left: 10, right: 10),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                const Text("Сегодня",
+                                Text("Сегодня",
                                   style: TextStyle(
                                       fontWeight: FontWeight.w500,
                                       fontSize: 17,
                                       color: Colors.white,
                                   )),
-                                ListenableBuilder(
-                                  listenable: stateHour,
-                                  builder: (BuildContext context, Widget? child) {
-                                    return Text(stateHour.uiData().date,
-                                    style: const TextStyle(
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 17,
-                                      color: Colors.white,
-                                    ));
-                                  }
-                                ),
+                                _DayWidget(),
                               ],
                             ),
                           ),
                           const SizedBox(height: 10),
                           Container(height: 3, color: Colors.white),
                           const SizedBox(height: 10),
-                          ListenableBuilder(
-                            listenable: stateHour,
-                            builder: (BuildContext context, Widget? child) {
-                              return Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  WeatherHourWidget(index: 0, data: stateHour.uiData()),
-                                  WeatherHourWidget(index: 1, data: stateHour.uiData()),
-                                  WeatherHourWidget(index: 2, data: stateHour.uiData()),
-                                  WeatherHourWidget(index: 3, data: stateHour.uiData()),
-                                ],
-                              );
-                            },
-                          ),
+                          const _HourWidget(),
                         ],
                       ),
                     ),
-                    SizedBox(height: 24),
-                    ListenableBuilder(
-                      listenable: stateBottom,
-                      builder: (BuildContext context, Widget? child) {
-                        return Column(
-                          children: [
-                            WeatherBottomWidget(
-                              weather: stateBottom.uiData().wind,
-                              specifications: stateBottom.uiData().windCharacter,
-                            ),
-                            WeatherBottomWidget(
-                              weather: stateBottom.uiData().humidity,
-                              specifications: stateBottom.uiData().humidityCharacter,
-                            ),
-                          ],
-                        );
-                      },
-                    ),
+                    const SizedBox(height: 24),
+                    const _BottomWidget(),
                   ],
                 ),
               ],
@@ -175,3 +94,134 @@ class WeatherPageBase extends StatelessWidget {
     );
   }
 }
+
+class _CityWidget extends StatelessWidget {
+  const _CityWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final stateWeather = context.read<WeatherPageCubit>().weatherState() as WeatherPageStateBase;
+    final stateCity = stateWeather.stateCity;
+    return ListenableBuilder(
+        listenable: stateCity,
+        builder: (context, widget) {
+          return Text(stateCity.uiData().city, style: const TextStyle(
+              fontSize: 15,
+              fontWeight: FontWeight.w500,
+              color: Colors.white
+          )
+          );
+        }
+    );
+  }
+}
+
+class _DayWidget extends StatelessWidget {
+  const _DayWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final stateWeather = context.read<WeatherPageCubit>().weatherState() as WeatherPageStateBase;
+    final stateHour = stateWeather.stateHour;
+    return ListenableBuilder(
+        listenable: stateHour,
+        builder: (BuildContext context, Widget? child) {
+          return Text(stateHour.uiData().date,
+              style: const TextStyle(
+                fontWeight: FontWeight.w400,
+                fontSize: 17,
+                color: Colors.white,
+              ));
+        }
+    );
+  }
+}
+
+class _HourWidget extends StatelessWidget {
+  const _HourWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final stateWeather = context.read<WeatherPageCubit>().weatherState() as WeatherPageStateBase;
+    final stateHour = stateWeather.stateHour;
+    return ListenableBuilder(
+      listenable: stateHour,
+      builder: (BuildContext context, Widget? child) {
+        return Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            WeatherHourWidget(index: 0, data: stateHour.uiData()),
+            WeatherHourWidget(index: 1, data: stateHour.uiData()),
+            WeatherHourWidget(index: 2, data: stateHour.uiData()),
+            WeatherHourWidget(index: 3, data: stateHour.uiData()),
+          ],
+        );
+      },
+    );
+  }
+}
+class _BottomWidget extends StatelessWidget {
+  const _BottomWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final stateWeather = context.read<WeatherPageCubit>().weatherState() as WeatherPageStateBase;
+    final stateBottom = stateWeather.stateBottom;
+    return ListenableBuilder(
+      listenable: stateBottom,
+      builder: (BuildContext context, Widget? child) {
+        return Column(
+          children: [
+            WeatherBottomWidget(
+              weather: stateBottom.uiData().wind,
+              specifications: stateBottom.uiData().windCharacter,
+            ),
+            WeatherBottomWidget(
+              weather: stateBottom.uiData().humidity,
+              specifications: stateBottom.uiData().humidityCharacter,
+            ),
+          ],
+        );
+      },
+    );
+  }
+}
+
+class _BaseWidget extends StatelessWidget {
+  const _BaseWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final stateWeather = context.read<WeatherPageCubit>().weatherState() as WeatherPageStateBase;
+    final stateBase = stateWeather.stateBase;
+    return ListenableBuilder(
+        listenable: stateBase,
+        builder: (context, widget) {
+          return Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(15),
+                child: Image(image: AssetImage('assets/${stateBase.uiData().baseIcon}.png')),
+              ),
+              Text("${stateBase.uiData().baseTemp}º", style: const TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w500,
+                  fontSize: 64
+              ),),
+              Text(stateBase.uiData().baseWeather, style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 17,
+                  fontWeight: FontWeight.w400
+              ),),
+              const Text("Макс:31ºМин:25º", style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 17,
+                  fontWeight: FontWeight.w400
+              )),
+            ],
+          );
+        }
+    );
+  }
+}
+
