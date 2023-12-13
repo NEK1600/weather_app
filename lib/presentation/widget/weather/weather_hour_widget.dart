@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:weather_app/core/page_state.dart';
 import 'package:weather_app/presentation/view_model/state_page/weather_page_state.dart';
+import 'package:weather_app/presentation/view_model/weather_page_cubit.dart';
 
 class WeatherHourWidget extends StatelessWidget {
   final int index;
