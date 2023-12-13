@@ -5,12 +5,10 @@ import 'package:weather_app/di/base_provider.dart';
 
 class InitialApp extends StatelessWidget {
   final BaseDi baseDi;
-
   const InitialApp({
     super.key,
     required this.baseDi,
   });
-
   @override
   Widget build(BuildContext context) {
     print("test1 InitialApp class ");

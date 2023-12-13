@@ -11,7 +11,6 @@ class BaseProvider extends InheritedWidget {
 
   @override
   bool updateShouldNotify(covariant InheritedWidget oldWidget) {
-    print("test1 ${oldWidget}");
     return false;
   }
 }

@@ -54,7 +54,7 @@ class WeatherPageBase extends StatelessWidget {
                     Container(
                       decoration: BoxDecoration(
                         borderRadius: const BorderRadius.all(
-                      Radius.circular(10),
+                          Radius.circular(10),
                         ),
                         color: const Color(0x33FFFFFF).withOpacity(0.3),
                       ),
@@ -160,6 +160,7 @@ class _HourWidget extends StatelessWidget {
     );
   }
 }
+
 class _BottomWidget extends StatelessWidget {
   const _BottomWidget({super.key});
 

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:weather_app/core/page_state.dart';
 import 'package:weather_app/presentation/view_model/state_page/weather_page_state.dart';
 import 'package:weather_app/presentation/view_model/weather_page_cubit.dart';
 
@@ -16,7 +15,6 @@ class WeatherHourWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final stateWeather = context.read<WeatherPageCubit>().weatherState() as WeatherPageStateBase;
     final stateHour = stateWeather.stateHour;
-    print("test1  ${stateHour.uiData().temps}");
     return Padding(
       padding: const EdgeInsets.all(16),
       child: Column(
